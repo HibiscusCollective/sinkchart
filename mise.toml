@@ -1,0 +1,24 @@
+[tools]
+rust = "stable"
+node = "20"
+python = "3.11"
+mask = "0.11.6"
+cocogitto = "6.1.0"
+typos = "1.28.3"
+# Cargo tools (experimental - may be flaky)
+"cargo:cargo-audit" = "latest"
+"cargo:cargo-deny" = "latest"
+"cargo:cargo-fuzz" = "latest"
+"cargo:tauri-cli" = "latest"
+
+[env]
+RUST_BACKTRACE = "1"
+CARGO_TERM_COLOR = "always"
+
+[settings]
+# Temporary workaround for slow tool installation (pending mise perf improvements)
+# For faster installs, create mise.local.toml with:
+#   [env]
+#   GITHUB_TOKEN = "your_github_token_here"  # No permissions needed, just for API rate limits
+http_timeout = "120s"
+fetch_remote_versions_timeout = "30s"

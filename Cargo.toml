@@ -1,0 +1,36 @@
+[workspace]
+members = [
+    "crates/core",
+    "crates/ui",
+    "crates/tauri-app",
+    "crates/plugins",
+    "crates/common",
+    "crates/integrations",
+]
+exclude = [
+    "fuzz",  # Fuzzing targets are kept separate from the main workspace
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "AGPL-3.0-or-later"
+authors = ["Pierre Fouilloux", "SinkChart Contributors", "Hibiscus Collective"]
+repository = "https://github.com/HibiscusCollective/sinkchart"
+homepage = "https://github.com/HibiscusCollective/sinkchart"
+description = "Plugin-based map management tool for video game exploration"
+keywords = ["gaming", "maps", "exploration", "annotations"]
+categories = ["games", "visualization"]
+
+[workspace.dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.46", features = ["full"] }
+thiserror = "2.0"
+tracing = "0.1"
+
+# UI dependencies
+dioxus = "0.7.0-alpha"
+dioxus-desktop = "0.7.0-alpha"

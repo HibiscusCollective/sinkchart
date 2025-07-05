@@ -15,98 +15,97 @@ This approach ensures that SinkChart scales organically with the gaming communit
 
 ## Current State
 
-- Empty repository with only git and Claude configuration
-- No package.json, dependencies, or build system configured
-- No source code files present
-- Contains Claude Code permissions configuration allowing bash operations
+- Initial workspace structure created with Cargo workspace
+- Basic crate structure for core, ui, tauri-app, plugins, common, and integrations
+- Development tooling configured (mise, mask, clippy, rustfmt)
+- Security tooling configured (cargo-audit, cargo-deny)
+- AGPLv3 license compliance setup
+- Bootstrap scripts for cross-platform development setup
 
-## Technical vision
+## Architecture
 
-- Single-command bootstrap across Windows, macOS, and Linux
-- Minimal toolchain with carefully selected, essential tools
-- Security and privacy first approach
-- Reproducible builds with locked dependencies and consistent environments
-- Modular expansion allowing incremental feature addition
-- Great developer experience with modern tooling and best practices
-- Up-to-date documentation both for end users and developers
+SinkChart uses a **vertical slice architecture** with selective crate boundaries organized as a Cargo workspace:
 
-## Core Dependencies
+- **`sinkchart-core`**: Core business logic, map management, annotation system
+- **`sinkchart-ui`**: Dioxus UI components and layout management  
+- **`sinkchart-tauri-app`**: Tauri application shell and main entry point
+- **`sinkchart-common`**: Shared utilities, error handling, configuration
+- **`sinkchart-plugins`**: Plugin system and dynamic loading
+- **`sinkchart-integrations`**: External integrations (export/import, sync)
 
-- Rust Ecosystem:
-    - rustc + cargo (via rustup)
-    - clippy - Rust linter with security-focused rules
-    - rustfmt - Code formatting
-    - cross - Cross-compilation support
-    - tauri - Cross-platform GUI framework
-    - dioxus - UI framework for tauri
-- Build and Task Management:
-    - mask - Primary task runner (markdown-based)
-    - just - Backup task runner for complex scenarios
-    - mise - environment variable management and tooling management
-- Security Tools:
-    - cargo-audit - Security vulnerability scanning
-    - cargo-deny - Dependency management and licensing checks
-    - cargo-fuzz - for fuzzing
-    - clippy security lints - Enhanced with custom security rules
-    - opengrep - Supports Rust with customizable security rules
-    - deepsource - Rust analyzer with 50+ issue types including security
-    - trivy
-    - GitHub Advanced Security “Code Scanning”
-- Build and release tools:
-    - CI/CD with GitHub Actions
-    - Coccogitto - Conventional commits and conventional changelogs release automation
-    - Coderabbit - Automated code review and linters
-- Documentation
-    - Cargo Docs for API docs
-    - mdbook for user docs
+## Technology Stack
 
-## Testing
+- **Language**: Rust (stable toolchain)
+- **UI Framework**: Dioxus 0.6
+- **Desktop Framework**: Tauri 2.0
+- **Build System**: Cargo workspace
+- **Task Runner**: Mask (markdown-based)
+- **Tool Management**: mise
+- **License**: AGPLv3-or-later
 
-- Unit Testing: Built-in Rust testing + proptest + quickcheck
-- Integration Testing: testcontainers for database testsf
-- Performance Testing: criterion for benchmarking
-- E2E/UI Testing: Unknown? Patrol?
+## Development Setup
 
-## Logging and Monitoring
+### Quick Start
 
-- Structured Logging: tracing ecosystem
-- Error Handling: anyhow or eyre
-- Metrics: metrics crate with exporters
-- Opt-in Telemetry: Unknown / Manual crash reporting
+```bash
+# Bootstrap development environment
+./scripts/bootstrap.sh    # Linux/macOS
+# or
+.\scripts\bootstrap.ps1   # Windows
 
-## Documentation
+# Common development commands
+mask build    # Build the project
+mask dev      # Run development server
+mask test     # Run tests
+mask lint     # Run clippy linter
+mask fmt      # Format code
+mask audit    # Security audit
+```
 
-- API Docs: cargo doc with custom styling
-- User Docs: `mdbook` for comprehensive guides
-- Architecture Decisions: ADR template in docs/
+### Project Structure
 
-## CI/CD Integration
+```
+sinkchart/
+├── crates/               # Rust crates
+│   ├── core/            # Core business logic
+│   ├── ui/              # Dioxus UI components
+│   ├── tauri-app/       # Tauri application shell
+│   ├── plugins/         # Plugin system
+│   ├── common/          # Shared utilities
+│   └── integrations/    # External integrations
+├── scripts/             # Build and deployment scripts
+├── docs/                # Documentation
+└── assets/              # Application assets
+```
 
-- GitHub Actions workflows for multi-platform builds
-- Security scanning integration with cargo-audit
-- Automated testing across all supported platforms
+## Build Commands
 
-## Architecture Overview
+- **Development**: `mask dev` - Runs the Tauri development server
+- **Build**: `mask build` - Builds release version
+- **Test**: `mask test` - Runs all tests in workspace
+- **Lint**: `mask lint` - Runs clippy with strict settings
+- **Format**: `mask fmt` - Formats all code
+- **Audit**: `mask audit` - Security vulnerability scanning
 
-SinkChart is a sophisticated plugin-based map management tool requiring:
+## Key Development Practices
 
-- Cross-platform deployment: Desktop, mobile, and web targets using Tauri 2.0 + Dioxus Tauri
-- Modular architecture: Modular organization with selective crate boundaries
-- Vertical slice architecture: Feature-based organization with selective crate boundaries 
-- Security-first approach: Comprehensive security tooling and AGPLv3 compliance
-- Modern tooling: mise.toml, Mask task runner, Go 1.24+ helpers, and automated CI/CD
+- **Security-first**: All dependencies are audited, AGPLv3 compliant
+- **Cross-platform**: Builds for Windows, macOS, Linux
+- **Plugin system**: Modular architecture for game-specific extensions
+- **Developer Certificate of Origin**: Sign commits with `git commit -s`
 
-## Implementation Strategy
+## Contributing
 
-The implementation follows a depth-first approach with multiple specialized perspectives addressing different architectural concerns. 
-Each prompt builds upon previous work while maintaining clear separation of concerns.
+1. Fork the repository
+2. Create a feature branch
+3. Make changes following existing patterns
+4. Sign commits with DCO: `git commit -s`
+5. Submit a pull request
 
-## Key Success Factors
+## License Compliance
 
-- Technical Excellence: Modern Rust workspace with Tauri 2.0 + Dioxus 0.6 integration, vertical slice architecture, and comprehensive security tooling.
-- User Experience: Easy-to-use interface with a focus on simplicity and accessibility.
-- Efficiency: Fast and efficient code execution allowing for seamless use on a second screen without impacting the game experience.
-- Libre Software Compliance: Full AGPLv3 compliance with proper source code availability, comprehensive documentation, and dependency license management.
-- Developer Experience: Modern tooling with mise.toml, Mask task runner, automated CI/CD, and comprehensive documentation.
-- Security-First: Security scanning automation, vulnerability management, and secure development practices throughout the entire architecture.
-- Privacy protection: User privacy and data protection measures, exclusively opt-in telemetry, always anonymized and securely stored.
+SinkChart is licensed under AGPLv3-or-later. All contributions must be compatible with this license. See `docs/COMPLIANCE.md` for details.
+
+## Repository Configuration
+
+- We are using an "ignore everything" gitignore policy with explicit allowlists.

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.0.json",
+  "productName": "SinkChart",
+  "version": "0.1.0",
+  "identifier": "com.sinkchart.app",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:3000"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "SinkChart",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "Utility",
+    "copyright": "Copyright (c) 2024 Pierre Fouilloux, SinkChart Contributors, Hibiscus Collective",
+    "license": "AGPL-3.0-or-later",
+    "shortDescription": "Plugin-based map management tool for video game exploration",
+    "longDescription": "SinkChart is a plugin-based map management tool designed specifically for video game exploration. It enables players to create, annotate and share game maps with unprecedented ease and precision.",
+    "createUpdaterArtifacts": false,
+    "publisher": "Hibiscus Collective",
+    "homepage": "https://github.com/HibiscusCollective/sinkchart",
+    "icon": []
+  },
+  "plugins": {}
+}

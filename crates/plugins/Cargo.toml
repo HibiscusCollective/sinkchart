@@ -1,0 +1,19 @@
+[package]
+name = "sinkchart-plugins"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Plugin system for SinkChart"
+readme = "README.md"
+
+[dependencies]
+libloading = "0.8"
+sinkchart-core = { path = "../core" }
+serde.workspace = true
+thiserror.workspace = true
+tracing.workspace = true

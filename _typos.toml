@@ -1,0 +1,45 @@
+# Typos configuration for SinkChart
+# See: https://github.com/crate-ci/typos
+
+[default]
+# Check file names and variable names
+check-filenames = true
+check-files = true
+
+[default.extend-words]
+# Project-specific terms that are not typos
+sinkchart = "sinkchart"
+agplv = "agplv"
+dioxus = "dioxus"
+tauri = "tauri"
+mise = "mise"
+maskfile = "maskfile"
+cocogitto = "cocogitto"
+rustup = "rustup"
+clippy = "clippy"
+rustfmt = "rustfmt"
+libloading = "libloading"
+
+[default.extend-identifiers]
+# Code identifiers that may look like typos
+println = "println"
+struct = "struct"
+impl = "impl"
+enum = "enum"
+fn = "fn"
+mut = "mut"
+const = "const"
+async = "async"
+await = "await"
+
+[files]
+# Exclude these paths from spell checking
+extend-exclude = [
+    "target/",
+    "node_modules/",
+    ".git/",
+    "*.lock",
+    "CHANGELOG.md",
+    "fuzz/corpus/",
+    "fuzz/artifacts/"
+]

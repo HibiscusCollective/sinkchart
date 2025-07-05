@@ -1,0 +1,18 @@
+[package]
+name = "sinkchart-integrations"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "External integrations for SinkChart"
+readme = "README.md"
+
+[dependencies]
+sinkchart-core = { path = "../core" }
+serde.workspace = true
+thiserror.workspace = true
+tokio.workspace = true

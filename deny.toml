@@ -1,0 +1,57 @@
+# cargo-deny configuration for SinkChart
+# Modern format - see https://github.com/EmbarkStudios/cargo-deny/pull/611
+
+[advisories]
+db-path = "~/.cargo/advisory-db"
+db-urls = ["https://github.com/rustsec/advisory-db"]
+ignore = [
+    ## This batch of advisories is from the Tauri project all relating to GTK3 usage https://github.com/orgs/tauri-apps/projects/34
+    "RUSTSEC-2024-0370",  # proc-macro-error unmaintained - comes from deep GTK dependencies via glib-macros
+    "RUSTSEC-2024-0411",  # gdkwayland-sys unmaintained - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0412",  # gdk - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0413",  # atk - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0414",  # gdkx11-sys unmaintained - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0415",  # gtk unmaintained - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0416",  # atk-sys unmaintained - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0417",  # gdkx11 unmaintained - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0418",  # The gtk-rs GTK3 bindings are no longer maintained.
+    "RUSTSEC-2024-0419",  # gtk3-macros unmaintained - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0420",  # gtk-sys unmaintained - comes from Tauri's GTK3 usage, GTK4 not yet supported in Tauri
+    "RUSTSEC-2024-0429",  # glib vulnerability in iterator - comes from Tauri's GTK dependencies, fixed in newer versions
+
+]
+
+[licenses]
+private = { ignore = true }
+confidence-threshold = 0.8
+allow = [
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "MIT",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "CC0-1.0",
+    "AGPL-3.0",
+    "LGPL-2.1",
+    "Zlib",        # zlib License - used by const_format (OSI approved, FSF Free/Libre)
+    "MPL-2.0",     # Mozilla Public License 2.0 - used by cssparser and others (copyleft, compatible with GPL)
+    "Unicode-3.0", # Unicode License v3 - used by ICU libraries for internationalization (OSI approved)
+]
+
+[bans]
+multiple-versions = "allow" # We check this through clippy
+wildcards = "allow"
+highlight = "all"
+workspace-default-features = "allow"
+external-default-features = "allow"
+allow = []
+deny = []
+skip = []
+skip-tree = []
+
+[sources]
+unknown-registry = "warn"
+unknown-git = "warn"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

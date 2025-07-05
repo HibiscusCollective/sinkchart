@@ -1,0 +1,77 @@
+# Ignore everything by default
+*
+
+# Allow essential project files
+!.gitignore
+!Cargo.toml
+!README.md
+!LICENSE
+!COPYRIGHT
+!AUTHORS
+!CHANGELOG.md
+!NOTICE
+!CLAUDE.md
+
+# Allow configuration files
+!mise.toml
+!maskfile.md
+!rust-toolchain.toml
+!deny.toml
+!clippy.toml
+!cog.toml
+!_typos.toml
+
+# Allow source code directories and files
+!crates/
+!crates/*/
+!crates/*/**
+
+# Allow documentation
+!docs/
+!docs/*/
+!docs/**
+
+# Allow fuzzing
+!fuzz/
+!fuzz/*/
+!fuzz/**
+
+# Allow scripts
+!scripts/
+!scripts/*
+
+# Allow essential assets
+!assets/
+!assets/*/
+!assets/**
+
+# Allow Rust source files
+!**/*.rs
+!**/Cargo.toml
+
+# Allow markdown files
+!**/*.md
+
+# Allow TOML files
+!**/*.toml
+
+# Allow shell scripts
+!**/*.sh
+
+# Still ignore build artifacts even if allowed above
+target/
+Cargo.lock
+
+# Tauri generated files
+**/gen/
+
+# Ignore sensitive files
+*.key
+*.pem
+*.p12
+*.pfx
+.env*
+config/secrets.toml
+
+# Ignore .local files
+**/*.local.*

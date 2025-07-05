@@ -1,0 +1,24 @@
+[package]
+name = "sinkchart-tauri-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Tauri application shell for SinkChart"
+readme = "README.md"
+
+[dependencies]
+tauri = { version = "2.6", features = [] }
+dioxus-desktop.workspace = true
+sinkchart-core = { path = "../core" }
+sinkchart-ui = { path = "../ui" }
+serde.workspace = true
+anyhow = "1.0"
+tokio.workspace = true
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }
