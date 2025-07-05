@@ -1,4 +1,5 @@
 # Clippy configuration for SinkChart
+# This configuration is complementary to workspace lints defined in Cargo.toml
 
 # Allow multiple crate versions for specific packages that come from deep transitive dependencies
 # We still want to catch version conflicts for direct and 1st/2nd level dependencies
@@ -18,8 +19,6 @@ allowed-duplicate-crates = [
     "windows-targets",           # Windows target specifications
     
     # Core utilities with ecosystem version conflicts (deep transitive)
-    "regex-automata",            # From tracing-subscriber vs newer regex
-    "regex-syntax",              # From tracing-subscriber vs newer regex
     "rustc-hash",                # From Dioxus internals vs other UI libraries
     "hashbrown",                 # Core hash map - multiple versions in ecosystem
     "indexmap",                  # Ordered hash map - v1 vs v2 ecosystem split
@@ -32,7 +31,7 @@ allowed-duplicate-crates = [
     "schemars",                  # JSON schema - multiple versions in ecosystem
     "base64",                    # Base64 encoding - v0.21 vs v0.22
     
-    # UI and graphics dependencies (deep transitive from Tauri/GTK)
+    # UI and graphics dependencies (deep transitive from Tauri/Dioxus)
     "raw-window-handle",         # Window handles - v0.5 vs v0.6 transition
     "phf",                       # Perfect hash functions - multiple versions
     "phf_shared",                # PHF shared utilities
@@ -58,4 +57,14 @@ allowed-duplicate-crates = [
     # Error handling with version conflicts (we use thiserror v2, ecosystem uses v1)
     "thiserror",                 # Our choice: use v2, but ecosystem still on v1
     "thiserror-impl",            # Implementation details for thiserror
+]
+
+# Additional clippy configuration for security-focused development
+# Note: Main lint configuration is in Cargo.toml [workspace.lints]
+avoid-breaking-exported-api = true
+warn-on-all-wildcard-imports = true
+disallowed-macros = ["dbg", "todo", "unimplemented"]
+disallowed-methods = [
+    "std::env::set_var",         # Prefer structured configuration
+    "std::process::exit",        # Prefer proper error handling
 ]

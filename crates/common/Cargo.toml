@@ -12,7 +12,17 @@ description = "Shared utilities for SinkChart"
 readme = "README.md"
 
 [dependencies]
+# Common-specific dependencies
+toml = "0.8"
+directories = "6.0"
+config = { version = "0.15", features = ["toml", "json"] }
+camino = "1.1"
+# Shared dependencies
 serde.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true
-tracing.workspace = true
+anyhow.workspace = true
+log.workspace = true
+
+[lints]
+workspace = true

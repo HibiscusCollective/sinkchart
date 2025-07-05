@@ -12,13 +12,25 @@ description = "Tauri application shell for SinkChart"
 readme = "README.md"
 
 [dependencies]
+# Tauri-specific dependencies
 tauri = { version = "2.6", features = [] }
-dioxus-desktop.workspace = true
+tokio = { version = "1.46", features = ["full"] }
+env_logger = "0.11"
+directories = "6.0"
+# Shared dependencies
 sinkchart-core = { path = "../core" }
 sinkchart-ui = { path = "../ui" }
+sinkchart-common = { path = "../common" }
 serde.workspace = true
-anyhow = "1.0"
-tokio.workspace = true
+anyhow.workspace = true
+log.workspace = true
+# tauri-plugin-window-state.workspace = true
+# tauri-plugin-fs.workspace = true
+# tauri-plugin-dialog.workspace = true
+# tauri-plugin-shell.workspace = true
 
 [build-dependencies]
-tauri-build = { version = "2.0", features = [] }
+tauri-build = { version = "2.3", features = [] }
+
+[lints]
+workspace = true

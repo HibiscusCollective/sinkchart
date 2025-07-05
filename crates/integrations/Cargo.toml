@@ -12,7 +12,20 @@ description = "External integrations for SinkChart"
 readme = "README.md"
 
 [dependencies]
+# Integration-specific dependencies
+bincode = "2.0"
+tokio = { version = "1.46", features = ["full"] }
+image = { version = "0.25", features = ["png", "jpeg", "webp"] }
+rustls = { version = "0.23", features = ["ring"] }
+sha2 = "0.10"
+# Shared dependencies
 sinkchart-core = { path = "../core" }
+sinkchart-common = { path = "../common" }
 serde.workspace = true
+serde_json.workspace = true
 thiserror.workspace = true
-tokio.workspace = true
+anyhow.workspace = true
+log.workspace = true
+
+[lints]
+workspace = true

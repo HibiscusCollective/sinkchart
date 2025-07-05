@@ -13,7 +13,18 @@ readme = "README.md"
 publish = false
 
 [dependencies]
-dioxus.workspace = true
+# UI-specific Dioxus dependencies
+dioxus = "0.7.0-alpha"
+dioxus-desktop = "0.7.0-alpha"
+dioxus-router = "0.7.0-alpha"
+dioxus-signals = "0.7.0-alpha"
+dioxus-hooks = "0.7.0-alpha"
+# Shared dependencies
 sinkchart-core = { path = "../core" }
 serde.workspace = true
 thiserror.workspace = true
+anyhow.workspace = true
+log.workspace = true
+
+[lints]
+workspace = true

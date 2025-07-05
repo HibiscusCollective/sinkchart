@@ -24,13 +24,34 @@ keywords = ["gaming", "maps", "exploration", "annotations"]
 categories = ["games", "visualization"]
 
 [workspace.dependencies]
-# Core dependencies
-serde = { version = "1.0", features = ["derive"] }
+# Core shared dependencies (used by 3+ crates)
+serde = { version = "1.0", features = ["derive", "rc"] }
 serde_json = "1.0"
-tokio = { version = "1.46", features = ["full"] }
 thiserror = "2.0"
-tracing = "0.1"
+anyhow = "1.0"
+log = "0.4"
 
-# UI dependencies
-dioxus = "0.7.0-alpha"
-dioxus-desktop = "0.7.0-alpha"
+# Security configuration at workspace level
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+unused_import_braces = "warn"
+unused_qualifications = "warn"
+trivial_casts = "warn"
+trivial_numeric_casts = "warn"
+
+[workspace.lints.clippy]
+all = "warn"
+pedantic = "warn"
+nursery = "warn"
+cargo = "warn"
+# Security-focused lints
+integer_overflow = "deny"
+panic = "deny"
+unwrap_used = "deny"
+expect_used = "deny"
+indexing_slicing = "deny"
+# Allow some pedantic lints that are too restrictive
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+module_name_repetitions = "allow"

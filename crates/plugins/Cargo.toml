@@ -12,8 +12,16 @@ description = "Plugin system for SinkChart"
 readme = "README.md"
 
 [dependencies]
+# Plugin-specific dependencies
 libloading = "0.8"
+inventory = "0.3"
+async-trait = "0.1"
+# Shared dependencies
 sinkchart-core = { path = "../core" }
 serde.workspace = true
 thiserror.workspace = true
-tracing.workspace = true
+anyhow.workspace = true
+log.workspace = true
+
+[lints]
+workspace = true
